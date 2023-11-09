@@ -58,6 +58,8 @@ jobs:
           release_name: ${{ github.ref }}
           draft: false
           prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
 
       - name: Add build to release
         uses: actions/upload-release-asset@v1
@@ -66,4 +68,5 @@ jobs:
           asset_path: ./build.tar.gz
           asset_name: dist-${{ steps.full_tag.outputs.VERSION }}.tar.gz
           asset_content_type: application/gzip
-
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
