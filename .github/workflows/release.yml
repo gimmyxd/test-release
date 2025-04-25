@@ -2,8 +2,6 @@ name: ci
 
 on:
   push:
-    branches:
-      - main
     tags:
       - v*
 
@@ -42,6 +40,8 @@ jobs:
       - name: Create Release
         id: create_release
         uses: ncipollo/release-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           artifacts: "dist-topaz-console-${{ github.ref_name }}.tar.gz"
           draft: false
